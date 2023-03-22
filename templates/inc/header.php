@@ -35,7 +35,7 @@ require_once 'helpers/system_helper.php';
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation"><a href="index.php">Home</a></li>
                     <li role="presentation"><a href="jobsave.php">Create Listing</a></li>
-                    <li role="presentation"><a href="#">Contact</a></li>
+                    <!-- <li role="presentation"><a href="#">Contact</a></li> -->
                 </ul>
             </nav>
             <h3 class="text-muted"><?php echo SITE_TITLE; ?></h3>

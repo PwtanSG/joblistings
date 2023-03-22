@@ -45,6 +45,10 @@ a {
     text-decoration: none;
 }
 
+.is-invalid {
+    border-color: red;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
     .container {

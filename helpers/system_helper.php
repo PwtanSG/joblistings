@@ -43,3 +43,37 @@ function displaySessionMessage()
         echo '';
     }
 }
+
+function sanitize_input($input, $type = NULL)
+{
+    $input = trim($input);
+    // $input = filter_var($input, FILTER_FLAG_STRIP_HIGH);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
+    if ($type === 'email') {
+        $input = filter_var($input, FILTER_SANITIZE_EMAIL);
+    }
+
+    return $input;
+}
+
+function validate_field($field_value, $type, $required = false)
+{
+    $err = '';
+    $field_value = trim($field_value);
+
+    if ($required) {
+        if (empty($field_value)) {
+            return $err = "This field is required";
+        }
+    }
+
+    if (!empty($field_value)) {
+        if ($type == 'email') {
+            if (!filter_var($field_value, FILTER_VALIDATE_EMAIL)) {
+                $err = "This field is invalid.";
+            }
+        }
+    }
+    return $err;
+}
