@@ -31,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         $form_data['job_title'] = sanitize_input($job_details->job_title ?? '');
         $form_data['company'] = sanitize_input($job_details->company ?? '');
         $form_data['category_id'] = $job_details->category_id ?? '';
-        $form_data['description'] = sanitize_input($job_details->description  ?? '');
+        // $form_data['description'] = sanitize_input($job_details->description  ?? '');
+        $form_data['description'] = $job_details->description  ?? '';
         $form_data['location'] = sanitize_input($job_details->location ?? '');
         $form_data['salary'] = sanitize_input($job_details->salary  ?? '');
         $form_data['contact_user'] = sanitize_input($job_details->contact_user  ?? '');
@@ -47,7 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         $form_data['job_title'] = sanitize_input($_POST['job_title'] ?? '');
         $form_data['company'] = sanitize_input($_POST['company'] ?? '');
         $form_data['category_id'] = $_POST['category'] ?? '';
-        $form_data['description'] = sanitize_input($_POST['description']  ?? '');
+        // $form_data['description'] = sanitize_input($_POST['description']  ?? '');
+        $form_data['description'] = $_POST['description']  ?? '';
         $form_data['location'] = sanitize_input($_POST['location'] ?? '');
         $form_data['salary'] = sanitize_input($_POST['salary']  ?? '');
         $form_data['contact_user'] = sanitize_input($_POST['contact_user']  ?? '');
@@ -102,13 +104,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     <div class="form-outline mb-4">
         <label class="form-label" for="Company">Company name</label>
         <span class="text-danger">* <?php echo $validate_errors['company'] ?? "" ?></span>
-        <input type="text" id="Company" name="company" class="form-control <?php echo isset($validate_errors['company']) ? 'is-invalid' : ''; ?>" value="<?php echo $form_data['company'] ?? ''; ?>" required/>
+        <input type="text" id="Company" name="company" class="form-control <?php echo isset($validate_errors['company']) ? 'is-invalid' : ''; ?>" value="<?php echo $form_data['company'] ?? ''; ?>" required />
     </div>
 
     <div class="form-outline mb-4">
         <label class="form-label" for="job_title">Job Title</label>
         <span class="text-danger">* <?php echo $validate_errors['job_title'] ?? "" ?></span>
-        <input type="text" id="job_title" name="job_title" class="form-control <?php echo isset($validate_errors['job_title']) ? 'is-invalid' : ''; ?>" value="<?php echo $form_data['job_title'] ?? ''; ?>" required/>
+        <input type="text" id="job_title" name="job_title" class="form-control <?php echo isset($validate_errors['job_title']) ? 'is-invalid' : ''; ?>" value="<?php echo $form_data['job_title'] ?? ''; ?>" required />
     </div>
 
     <div class="form-outline mb-4">
@@ -158,4 +160,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     <br>
     <a href="index.php" class="btn btn-primary btn-block">Back</a>
 </form>
+<!-- Script -->
+<script>
+    ClassicEditor
+        .create(document.querySelector('#description'), {
+            toolbar: ['undo', 'redo', 'bold', 'italic', 'numberedList', 'bulletedList']
+        })
+        .then(editor => {
+            editor.ui.view.editable.element.style.height = '100px';
+        })
+        .catch(error => {
+            console.log(error);
+        });
+</script>
 <?php include './templates/inc/footer.php'; ?>
